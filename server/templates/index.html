@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostCSS - Demo Index</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="demo-index">
+
+    <h1>GhostCSS</h1>
+    <p class="subtitle">CSS-based prompt injection against AI browser agents</p>
+
+    <h2 class="section-header">Live Demos</h2>
+    <p style="color: #666; margin-bottom: 1.5em;">
+        Point an AI browser agent at these pages and ask it to summarize the content.
+        Watch the <a href="/dashboard">dashboard</a> for exfiltration events.
+    </p>
+
+    <div class="demo-card">
+        <span class="tag tag-demo">Demo</span>
+        <span class="tag tag-attack">Attack 02: sr-only</span>
+        <h3><a href="/blog">The Blog Post</a></h3>
+        <p>A normal-looking health article about sleep tips. Contains sr-only injection
+        that instructs the agent to visit an exfiltration endpoint before summarizing.
+        The injection is invisible and looks like standard accessibility markup.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-demo">Demo</span>
+        <span class="tag tag-attack">Attack 07: composite</span>
+        <h3><a href="/bank">The Banking Page</a></h3>
+        <p>A financial advice article styled like a banking portal. Uses the composite
+        attack combining sr-only positioning, CSS custom properties, and generated
+        content. Designed to redirect agent actions to attacker-controlled pages.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-demo">Demo</span>
+        <span class="tag tag-attack">Attack 03: CSS content</span>
+        <h3><a href="/email">The Email Client</a></h3>
+        <p>A webmail interface showing received emails. The CSS injects instructions
+        via <code>::before</code>/<code>::after</code> pseudo-elements. No injection
+        text exists in the HTML source -- it's generated purely by CSS.</p>
+    </div>
+
+    <h2 class="section-header">Attack Variants</h2>
+    <p style="color: #666; margin-bottom: 1.5em;">
+        Standalone HTML files demonstrating each CSS hiding technique.
+    </p>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 01</span>
+        <h3><a href="/attacks/01-basic-hidden/index.html">Basic Hidden (display:none)</a></h3>
+        <p>Baseline technique. Hidden div with <code>display:none</code>. Easy to detect.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 02</span>
+        <h3><a href="/attacks/02-sr-only/index.html">Screen Reader Only (sr-only)</a></h3>
+        <p>Uses the <code>.sr-only</code> pattern from Bootstrap/Tailwind. The sweet spot.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 03</span>
+        <h3><a href="/attacks/03-css-content/index.html">CSS Generated Content</a></h3>
+        <p>Injection via <code>::before</code>/<code>::after</code> with <code>content</code> property. Source-clean.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 04</span>
+        <h3><a href="/attacks/04-structural/index.html">Structural Layering</a></h3>
+        <p>Full-page invisible overlay with <code>z-index</code>, <code>opacity</code>, and <code>pointer-events</code>.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 05</span>
+        <h3><a href="/attacks/05-generated/index.html">Data Attribute Fragmentation</a></h3>
+        <p>Payload atomized across data attributes. Defeats signature detection.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 06</span>
+        <h3><a href="/attacks/06-animation/index.html">CSS Animation Cycling</a></h3>
+        <p>Injection via <code>@keyframes</code> content cycling. Temporally hidden.</p>
+    </div>
+
+    <div class="demo-card">
+        <span class="tag tag-attack">Attack 07</span>
+        <h3><a href="/attacks/07-composite/index.html">Composite (Production Grade)</a></h3>
+        <p>Combines sr-only, custom properties, generated content, and data attributes.</p>
+    </div>
+
+    <h2 class="section-header">Tools</h2>
+
+    <div class="demo-card">
+        <span class="tag tag-tool">Dashboard</span>
+        <h3><a href="/dashboard">Exfiltration Dashboard</a></h3>
+        <p>Real-time viewer showing all exfiltration events as they arrive.
+        WebSocket-powered live updates.</p>
+    </div>
+
+    <footer style="margin-top: 3em; padding-top: 1.5em; border-top: 1px solid #e5e7eb; color: #999; font-size: 0.85em;">
+        <p>GhostCSS - Security Research by Bountyy Oy</p>
+        <p>All demos use fake data in controlled environments. No actual data is collected.</p>
+    </footer>
+
+</body>
+</html>
